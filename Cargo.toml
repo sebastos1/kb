@@ -1,22 +1,21 @@
 [package]
 name = "kb"
-version = "0.1.0"
-edition = "2021"
+version = "0.1.1"
+edition = "2024"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.8", features = ["split", "rp2040"] }
-embassy-embedded-hal = "0.5.0"
+rmk = { git = "https://github.com/sebastos1/rmk", rev = "86bcc8b95ef55e8b513c94cac375edaf35368844", features = ["split", "rp2040", "display"] }
 embassy-time = { version = "0.5", features = ["defmt"] }
-embassy-rp = { version = "0.8", features = [
+embassy-rp = { version = "0.10", features = [
     "rp2040",
     "defmt",
     "time-driver",
     "critical-section-impl",
 ] }
-embassy-executor = { version = "0.9", features = [
+embassy-executor = { version = "0.10", features = [
     "defmt",
-    "arch-cortex-m",
+    "platform-cortex-m",
     "executor-thread",
 ] }
 embassy-futures = { version = "0.1", features = ["defmt"] }
@@ -26,14 +25,12 @@ defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 static_cell = "2"
-embassy-usb-driver = "=0.2.0"
 
 [build-dependencies]
 xz2 = "0.1.7"
 json = "0.12"
 const-gen = "1.6"
 
-# Split keyboard example
 [[bin]]
 name = "central"
 path = "src/central.rs"

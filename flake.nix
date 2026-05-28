@@ -39,6 +39,7 @@
             cargo-make
             cargo-binutils
             flip-link
+            picotool
           ];
           RUST_MIN_STACK = "16777216";
         };
