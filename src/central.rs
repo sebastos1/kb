@@ -81,8 +81,11 @@ async fn main(spawner: Spawner) {
         uart::Config::default(),
     );
 
-    let storage_config = StorageConfig::default();
     let mut behavior_config = BehaviorConfig::default();
+    behavior_config.morse.enable_flow_tap = true;
+    behavior_config.morse.prior_idle_time = embassy_time::Duration::from_millis(100);
+
+    let storage_config = StorageConfig::default();
     let per_key_config = PositionalConfig::<ROW, COL>::default();
     let mut keymap_data = KeymapData::new(keymap::get_default_keymap());
     let (keymap, mut storage) = initialize_keymap_and_storage(
